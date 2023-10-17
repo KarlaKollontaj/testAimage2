@@ -18,23 +18,32 @@ class Form extends Component {
         handleChange = (e) => {
             this.setState({ [e.target.name]: e.target.value });
         };
-    
-        handleSubmit = (e) => {
-            //alert(`${this.state.nome}, registrazione avvenuta con successo!`)
-            // Puoi gestire i dati del form qui, ad esempio, inviandoli a un server o salvandoli nello stato dell'app.
-            console.log(this.state);
-            this.setState({
-                nome: "",
-                cognome: "",
-                telefono: '',
-                email: "",
-                corsoInteresse: ""
-            })
+        
+        
+        handleSubmit = async (e) => {
             e.preventDefault();
-            //axios.post('http://localhost:3306/submit', values)
-            //.then(res => console.log("Registrazione avvenuta con successo"))
-            //.catch(err => console.log(err));
-        };
+            const { nome, cognome, telefono, email, corsoInteresse } = this.state;
+          
+            try {
+              const response = await fetch("/submit", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ nome, cognome, telefono, email, corsoInteresse }),
+              });
+          
+              if (response.status === 200) {
+                console.log("Registrazione avvenuta con successo");
+                // Esegui qui eventuali azioni dopo la registrazione riuscita
+              } else {
+                console.error("Errore durante la registrazione");
+              }
+            } catch (error) {
+              console.error("Errore durante la richiesta al server:", error);
+            }
+          };
+          
 
     render(){
         return(
