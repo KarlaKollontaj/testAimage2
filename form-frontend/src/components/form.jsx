@@ -25,7 +25,7 @@ class Form extends Component {
             const { nome, cognome, telefono, email, corsoInteresse } = this.state;
           
             try {
-              const response = await fetch("/submit", {
+              const response = await fetch("http://localhost:5000/submit", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

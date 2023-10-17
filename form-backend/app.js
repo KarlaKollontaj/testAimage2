@@ -4,11 +4,11 @@ const dotenv = require('dotenv');
 const cors = require("cors");
 const { body, validationResult } = require("express-validator");
 
-app.use(cors());
 
 dotenv.config({ path: './.env'})
 
 const app = express();
+app.use(cors());
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -77,9 +77,9 @@ app.post("/submit", [
   });
 });
 
-app.get("/", (req, res)=> {
+/*app.get("/", (req, res)=> {
     res.send("<h1>Home Page<h1>")
-});
+});*/
 
 app.listen(5000, () => {
     console.log("Server started on Port 5000")
