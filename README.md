@@ -1,5 +1,3 @@
-# testAimage2
-
 # Modulo di Registrazione costruito con React, Node.js e MySQL
 
 Questo progetto è un esempio di modulo di registrazione che utilizza React per il frontend, Node.js per il backend e MySQL per la gestione dei dati degli utenti.
