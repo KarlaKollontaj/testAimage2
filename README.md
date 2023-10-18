@@ -2,6 +2,8 @@
 
 Questo progetto è un esempio di modulo di registrazione che utilizza React per il frontend, Node.js per il backend e MySQL per la gestione dei dati degli utenti.
 
+Risulta incompleto rispetto alle consegne, ma ho reputato opportuno inviare ugualmente il progetto, in quanto sono certa che con maggior tempo per approfondire gli argomenti per me ancora da praticare (di cui ho già cominciato a seguire tutorial e leggere documentazioni), avrei potuto concluderlo.
+
 ## Dipendenze
 
 - Node.js ("version": "1.0.0"):  
