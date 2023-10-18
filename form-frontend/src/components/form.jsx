@@ -35,7 +35,7 @@ class Form extends Component {
           
               if (response.status === 200) {
                 console.log("Registrazione avvenuta con successo");
-                // Esegui qui eventuali azioni dopo la registrazione riuscita
+                //qui inserire le azioni dopo che la registrazione è riuscita
               } else {
                 console.error("Errore durante la registrazione");
               }

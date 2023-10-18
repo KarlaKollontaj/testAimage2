@@ -23,9 +23,7 @@ db.connect( (error) => {
     } else {
         console.log("MySql connected...")
     }
-})
-
-
+});
 
 app.post("/submit", [
   body("nome").isString(),
@@ -41,16 +39,15 @@ app.post("/submit", [
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  
-  // Verifica se esiste un record con lo stesso nome e cognome
-  const duplicateQuery = "SELECT * FROM tabellaAimage WHERE nome = ? AND cognome = ?";
-  db.query(duplicateQuery, [nome, cognome], (err, results) => {
+
+  const duplicateQuery = "SELECT * FROM tabellaAimage WHERE email = ? AND telefono = ?";
+  db.query(duplicateQuery, [email, telefono], (err, results) => {
     if (err) {
       console.error("Errore nella verifica dei duplicati:", err);
       res.status(500).json({ message: "Errore nella verifica dei duplicati" });
     } else {
       if (results.length > 0) {
-        const updateQuery = "UPDATE tabellaAimage SET telefono = ?, email = ?, corsoInteresse = ? WHERE nome = ? AND cognome = ?";
+        const updateQuery = "UPDATE tabellaAimage SET nome = ?, cognome = ?, corsoInteresse = ? WHERE email = ? AND telefono = ?";
         db.query(updateQuery, [telefono, email, corsoInteresse, nome, cognome], (error, result) => {
           if (error) {
             console.error("Errore nell'aggiornamento del record:", error);
@@ -61,7 +58,6 @@ app.post("/submit", [
           }
         });
       } else {
-        // Nessun duplicato trovato, procedi con l'inserimento dei dati
         const insertQuery = "INSERT INTO tabellaAimage (nome, cognome, telefono, email, corsoInteresse) VALUES (?, ?, ?, ?, ?)";
         db.query(insertQuery, [nome, cognome, telefono, email, corsoInteresse], (error, result) => {
           if (error) {
@@ -76,10 +72,6 @@ app.post("/submit", [
     }
   });
 });
-
-/*app.get("/", (req, res)=> {
-    res.send("<h1>Home Page<h1>")
-});*/
 
 app.listen(5000, () => {
     console.log("Server started on Port 5000")
